@@ -231,9 +231,3 @@ a:hover .new {
     top: -20px;
   }
 }
-
-@media screen and not all and (min-width: 1023px) {
-  p.location {
-    cursor: vertical-text !important;
-  }
-}
