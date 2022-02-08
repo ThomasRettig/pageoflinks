@@ -30,6 +30,9 @@ ul {
 
 /*----Main styles----
 -------------------*/
+html {
+  color-scheme: dark;
+}
 
 body {
   font-family: var(--font-text);
@@ -70,7 +73,6 @@ p.location {
   color: #fff;
   letter-spacing: 1px;
   position: fixed;
-  cursor: vertical-text;
   transform: rotate(90deg);
   right: -70px;
   top: 104px;
@@ -174,7 +176,7 @@ a:hover .new {
 }
 
 @media screen and (max-width: 1023px) {
-  #page {
+  main, header {
     position: static;
     display: block;
     padding: 7vw;
@@ -227,5 +229,11 @@ a:hover .new {
 
   .new {
     top: -20px;
+  }
+}
+
+@media screen and not all and (min-width: 1023px) {
+  p.location {
+    cursor: vertical-text !important;
   }
 }
