@@ -146,6 +146,7 @@ p.social a:hover {
   letter-spacing: 0.25px;
   font-weight: bold;
   display: inline-block;
+  user-select: none;
   transform: rotate(25deg) scale(0.85);
   position: relative;
   top: -30px;
