@@ -13,6 +13,12 @@
   outline: 3px solid hotpink;
 }
 
+@media screen and (prefers-reduced-motion:reduce) {
+    * {
+        transition: 0.01s !important;
+    }
+}
+
 * {
   margin: 0;
   padding: 0;
