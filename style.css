@@ -4,11 +4,24 @@
 :root {
   --font-text: 'Inter', system-ui, sans-serif;
   --font-display: 'InterDisplay', 'Inter Display', Inter, system-ui, sans-serif;
+  --color-scheme: light;
+  --color-accent: #a5d6a7;
+  --color-text: #1b5e20;
+  --color-background: #e8f5e9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-scheme: dark;
+    --color-accent: coral;
+    --color-text: white;
+    --color-background: #131313;
+  }
 }
 
 ::selection {
-  background-color: #f1f1f1;
-  color: black;
+  background-color: #131313;
+  color: var(--color-background);
 }
 
 :focus-visible {
@@ -28,14 +41,14 @@
 -------------------*/
 
 html {
-  color-scheme: dark;
+  color-scheme: var(--color-scheme);
 }
 
 body {
   font-family: var(--font-text);
   line-height: 1.5;
-  background: black;
-  color: #f1f1f1;
+  background: var(--color-background);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -53,6 +66,7 @@ p.social {
 }
 
 h1 {
+  font-family: var(--font-display);
   font-size: 30px;
   font-weight: 700;
   line-height: 1;
@@ -67,9 +81,9 @@ h1 span {
 
 p.location {
   font-size: 14px;
-  color: #fff;
   letter-spacing: 1px;
   position: fixed;
+  cursor: vertical-text;
   transform: rotate(90deg);
   right: -70px;
   top: 104px;
@@ -116,7 +130,7 @@ dl a {
 
 a:hover,
 p.social a:hover {
-  color: coral;
+  color: var(--color-accent);
 }
 
 .new {
@@ -124,12 +138,12 @@ p.social a:hover {
   content: "new";
   font-size: 12px;
   text-transform: uppercase;
-  background: coral;
+  background: var(--color-accent);
   color: black;
   padding: 8px 3px 17px 7px;
   border-radius: 100%;
   line-height: 2;
-  letter-spacing: 0px;
+  letter-spacing: 0.25px;
   font-weight: bold;
   display: inline-block;
   transform: rotate(25deg) scale(0.85);
@@ -142,7 +156,7 @@ p.social a:hover {
 }
 
 a:hover .new {
-  background: coral;
+  background: var(--color-accent);
   color: black;
   transform: rotate(0deg) scale(1)
 }
@@ -202,11 +216,7 @@ a:hover .new {
   }
 
   p.location {
-    font-size: 16px;
-    position: static;
-    transform: none;
-    width: auto;
-    margin-bottom: 1.5em;
+    display: none;
   }
 
   .new {
