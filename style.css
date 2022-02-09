@@ -24,6 +24,12 @@
   }
 }
 
+@media (prefers-color-scheme: light) {
+  dl a:hover {
+    color: #0f3612;
+  }
+}
+
 ::selection {
   background-color: #131313;
   color: var(--color-background);
@@ -31,7 +37,7 @@
 
 :focus-visible {
   transition: 0s;
-  outline: 3px solid hotpink;
+  outline: 4px solid hotpink;
 }
 
 /*-----Reset------
