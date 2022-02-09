@@ -137,6 +137,7 @@ a {
 }
 
 dl a {
+  transition: 0.2s;
   font-family: var(--font-display);
 }
 
@@ -171,15 +172,19 @@ p.social a:hover {
 a:hover .new {
   background: var(--color-accent);
   color: black;
-  transform: rotate(0deg) scale(1)
+  transform: rotate(0deg) scale(1);
 }
 
 /*-------Media queries------
 ----------------------------*/
 
-@media screen and (prefers-reduced-motion:reduce) {
+@media screen and (prefers-reduced-motion: reduce) {
     * {
-        transition: 0.01s !important;
+      transition: 0.05s !important;
+    }
+
+    *:hover {
+      transform: none !important;
     }
 }
 
