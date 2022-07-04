@@ -17,7 +17,6 @@ Variables + pseudo selectors
 }
 
 :focus-visible {
-  transition: 0s;
   outline: 4px solid hotpink;
 }
 
@@ -81,7 +80,7 @@ p.location {
 }
 
 dl {
-  margin-bottom: 4em;
+  margin-bottom: calc(6vmin + 2vh);
 }
 
 dl dt,
@@ -114,7 +113,6 @@ a {
 }
 
 dl a {
-  transition: 0.2s;
   font-family: var(--font-display);
 }
 
@@ -223,6 +221,7 @@ a:hover .new {
     display: grid;
     gap: 5vmin;
     grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    max-width: 1200px;
   }
 }
 
