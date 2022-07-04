@@ -26,14 +26,37 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://rsms.me/" crossorigin>
     <link rel="dns-prefetch" href="https://rsms.me/">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" crossorigin>
-    <link rel="stylesheet" href="https://rsms.me/inter/inter-display.css" crossorigin>
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-style:  normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("https://rsms.me/inter/font-files/Inter-Regular.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: "Inter";
+        font-style:  normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url("https://rsms.me/inter/font-files/Inter-Medium.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: "InterDisplay";
+        font-style:  normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("https://rsms.me/inter/font-files/InterDisplay-Bold.woff2") format("woff2");
+      }
+    </style>
     <!--favicon-->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
   </head>
   <body>
     <header>
-      <h1 class="title">Thomas Rettig</h1>
+      <h1 class="title"><span class="name">Thomas Rettig’s</span><br>Page of Links</h1>
     </header>
     <main>
       <p class="location"><span aria-label="location">📍</span>Singapore</p>
@@ -44,7 +67,7 @@
           <dd><a target="_blank" href="https://stackoverflow.com/users/16381861/thomas-rettig">Stack Overflow</a></dd>
         </dl>
         <dl id="graphics">
-          <dt>Visuals</dt>
+          <dt>Design</dt>
           <dd><a target="_blank" href="https://www.figma.com/@thomasrettig">Figma</a></dd>
           <dd><a target="_blank" href="https://unsplash.com/@thmsrttg">Unsplash</a></dd>
         </dl>

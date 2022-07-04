@@ -11,6 +11,16 @@ Variables + pseudo selectors
   --color-background: #e8f5e9;
 }
 
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 ::selection {
   background-color: #131313;
   color: var(--color-background);
@@ -56,20 +66,26 @@ footer, header {
   padding-top: 0;
 }
 
-h1 {
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 1;
+dt,
+footer,
+.name {
+  opacity: 0.7;
 }
 
-h1 span {
-  font-weight: 600;
+h1 {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .location {
   font-size: 14px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   position: fixed;
   cursor: vertical-text;
   transform: rotate(90deg);
@@ -83,7 +99,7 @@ dl {
 }
 
 dl dt,
-p.social strong {
+.social strong {
   font-feature-settings: "ss02";
   font-size: 20px;
   font-weight: 500;
@@ -92,7 +108,7 @@ p.social strong {
   margin-bottom: 3vmin;
 }
 
-p.social strong {
+.social strong {
   margin-right: 1em;
 }
 
@@ -120,67 +136,27 @@ p.social a:hover {
   color: var(--color-accent);
 }
 
-.new {
-  font-family: var(--font-text);
-  content: "new";
-  font-size: 12px;
-  text-transform: uppercase;
-  background: var(--color-accent);
-  color: black;
-  padding: 8px 3px 17px 7px;
-  border-radius: 100%;
-  line-height: 2;
-  letter-spacing: 0.25px;
-  font-weight: bold;
-  display: inline-block;
-  user-select: none;
-  transform: rotate(25deg) scale(0.85);
-  position: relative;
-  top: -30px;
-  transition: all 0.15s ease-out;
-  width: 32px;
-  height: 10px;
-  margin-left: -10px;
-}
-
-a:hover .new {
-  background: var(--color-accent);
-  color: black;
-  transform: rotate(0deg) scale(1);
-}
-
-.z-layer:not(:first-child) {
-   filter: brightness(0.5);
+.columns-4 {
+  animation: fadein 1.3s;
 }
 
 /*-------Media queries------
 ----------------------------*/
 
-@media screen and (prefers-reduced-motion: reduce) {
-  * {
-    transition: 0.05s !important;
-  }
-
-  *:hover {
-    transform: none !important;
-  }
-}
-
 @media screen and (max-width: 1000px) {
   main,
-  header {
+  header,
+  footer {
     padding: 5vw;
   }
 
   h1 {
     position: static;
-    font-size: 30px;
     margin-top: 0.5em;
   }
 
-  p.social {
+  .social {
     position: static;
-    padding: 30px;
   }
 
   dt {
@@ -194,35 +170,35 @@ a:hover .new {
     font-size: 30px;
   }
 
+  dd {
+    margin: 2vmin 0;
+  }
+
   a {
     display: block;
   }
 
-  p.social a {
+  .social a {
     display: block;
     padding: 0px;
     font-size: 20px;
     line-height: 2;
   }
 
-  dl dt:first-child,
-  p.social strong {
+  dt:first-child,
+  .social strong {
     font-size: 20px;
   }
 
-  p.location {
+  .location {
     display: none;
-  }
-
-  .new {
-    top: -20px;
   }
 }
 
 @media screen and (min-width: 1001px) {
   .columns-4 {
+    column-gap: 12ch;
     display: flex;
-    gap: 12vmin;
     max-width: 1200px;
   }
 }
@@ -234,16 +210,20 @@ a:hover .new {
     --color-text: white;
     --color-background: #131313;
   }
-
-  span.new,
-  span.new:hover {
-    background-color: #363636;
-    color: white;
-  }
 }
 
 @media (prefers-color-scheme: light) {
   a:hover {
     color: #0f3612;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    transition: 0.05s !important;
+  }
+
+  *:hover {
+    transform: none !important;
   }
 }
