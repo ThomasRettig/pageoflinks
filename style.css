@@ -67,7 +67,7 @@ h1 span {
   font-weight: 600;
 }
 
-p.location {
+.location {
   font-size: 14px;
   letter-spacing: 1px;
   position: fixed;
@@ -111,7 +111,7 @@ a {
   text-decoration: none;
 }
 
-dl a {
+a {
   font-family: var(--font-display);
 }
 
@@ -243,7 +243,7 @@ a:hover .new {
 }
 
 @media (prefers-color-scheme: light) {
-  dl a:hover {
+  a:hover {
     color: #0f3612;
   }
 }
