@@ -3,7 +3,7 @@
 
 :root {
   --font-text: "Inter", system-ui, sans-serif;
-  --font-display: "InterDisplay", "Inter Display", Inter, system-ui, sans-serif;
+  --font-display: "InterDisplay", "Inter Display", "Inter", system-ui, sans-serif;
   --color-scheme: light;
   --color-accent: #a5d6a7;
   --color-text: #1b5e20;
