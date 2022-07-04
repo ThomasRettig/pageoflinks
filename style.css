@@ -1,5 +1,6 @@
-/*-------Meta------
------------------*/
+/*--------------------------
+Variables + pseudo selectors
+--------------------------*/
 
 :root {
   --font-text: "Inter", system-ui, sans-serif;
@@ -8,27 +9,6 @@
   --color-accent: #a5d6a7;
   --color-text: #1b5e20;
   --color-background: #e8f5e9;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-scheme: dark;
-    --color-accent: coral;
-    --color-text: white;
-    --color-background: #131313;
-  }
-
-  span.new,
-  span.new:hover {
-    background-color: #363636;
-    color: white;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  dl a:hover {
-    color: #0f3612;
-  }
 }
 
 ::selection {
@@ -66,9 +46,6 @@ body {
 }
 
 main {
-  display: flex;
-  align-content: center;
-  align-items: stretch;
   padding: 25vh 60px 0;
 }
 
@@ -104,19 +81,17 @@ p.location {
 }
 
 dl {
-  width: 30%;
   margin-bottom: 4em;
 }
 
 dl dt,
 p.social strong {
-  font-weight: 500;
-  letter-spacing: 3px;
   font-feature-settings: "ss02";
   font-size: 20px;
-  margin-bottom: 1em;
-  margin-right: 2em;
+  font-weight: 500;
   font-variant: all-small-caps;
+  letter-spacing: 3px;
+  margin-bottom: 3vmin;
 }
 
 p.social strong {
@@ -128,8 +103,8 @@ dl dt:first-child {
 }
 
 dl dd {
-  line-height: calc(0.59em + 5vh);
-  font-size: calc(16px + 2vw);
+  line-height: calc(0.6em + 5vh);
+  font-size: min(max(30px, calc(2em + 0.2vw - 0.7px)), 40px);
   font-weight: 600;
 }
 
@@ -190,13 +165,10 @@ a:hover .new {
   }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1000px) {
   main,
   header {
-    position: static;
-    display: block;
-    padding: 7vw;
-    height: auto;
+    padding: 5vw;
   }
 
   h1 {
@@ -243,5 +215,34 @@ a:hover .new {
 
   .new {
     top: -20px;
+  }
+}
+
+@media screen and (min-width: 1001px) {
+  .columns-4 {
+    display: grid;
+    gap: 5vmin;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-scheme: dark;
+    --color-accent: coral;
+    --color-text: white;
+    --color-background: #131313;
+  }
+
+  span.new,
+  span.new:hover {
+    background-color: #363636;
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  dl a:hover {
+    color: #0f3612;
   }
 }
