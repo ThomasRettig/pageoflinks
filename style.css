@@ -72,6 +72,12 @@ footer,
   opacity: 0.7;
 }
 
+aside {
+  position: fixed;
+  z-index: -1;
+  filter: brightness(55%);
+}
+
 h1 {
   font-size: 25px;
   font-weight: 500;
