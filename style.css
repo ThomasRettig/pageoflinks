@@ -147,9 +147,8 @@ p.social a:hover {
   animation: fadein 1.3s;
 }
 
-img {
+br, img {
   user-select: none;
-  animation: fadein 3s;
 }
 
 /*-------Media queries------
