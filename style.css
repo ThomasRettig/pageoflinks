@@ -228,6 +228,10 @@ br, img {
   a:hover {
     color: #0f3612;
   }
+  
+  aside {
+    filter: brightness(150%);
+    mix-blend-mode: overlay; /* ensure green backrgound colour is inherited */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
