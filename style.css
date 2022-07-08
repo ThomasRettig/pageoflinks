@@ -123,9 +123,9 @@ dl dt:first-child {
 }
 
 dl dd {
-  line-height: calc(0.6em + 5vh);
   font-size: min(max(30px, calc(2em + 0.2vw - 0.7px)), 40px);
   font-weight: 600;
+  margin-bottom: max(min(8px), 0.2vh, 12px);
 }
 
 a {
