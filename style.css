@@ -141,7 +141,7 @@ a {
 a:hover,
 p.social a:hover {
   color: var(--color-accent);
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .columns-4 {
