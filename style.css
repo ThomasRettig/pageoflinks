@@ -137,6 +137,11 @@ a {
   font-family: var(--font-display);
 }
 
+a:hover,
+p.social a:hover {
+  color: var(--color-accent);
+}
+
 .columns-4 {
   animation: fadein 1.3s;
 }
