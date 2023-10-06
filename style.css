@@ -136,7 +136,7 @@ dl dt:first-child {
 }
 
 dl dd {
-  font-size: min(max(30px, 2em + 0.2vw - 0.7px), 40px);
+  font-size: min(max(32px, 2em + 0.2vw - 0.7px), 40px);
   line-height: 1.2;
   margin-bottom: max(min(8px), 0.2vh, 12px);
 }
