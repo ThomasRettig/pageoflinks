@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base target="_blank">
     <!--open graph-->
     <meta property="og:locale" content="en_GB">
     <meta property="og:site_name" content="Thomas Rettig">
@@ -59,6 +60,9 @@
   </head>
   <body>
     <header>
+      <div id="logo" role="presentation">
+        <a href="/"><div class="circle"></div></a>
+      </div>
       <h1 class="title"><span class="name">Thomas Rettig’s</span><br>Page of Links</h1>
     </header>
     <main>
@@ -66,43 +70,29 @@
       <div class="columns-4">
         <dl>
           <dt>Programming</dt>
-          <dd><a target="_blank" href="https://github.com/ThomasRettig/">Github</a></dd>
-          <dd><a target="_blank" href="https://stackoverflow.com/users/16381861/thomas-rettig">Stack Overflow</a></dd>
+          <dd><a href="https://github.com/ThomasRettig/">Github</a></dd>
+          <dd><a href="https://stackoverflow.com/users/16381861/thomas-rettig">Stack Overflow</a></dd>
         </dl>
         <dl>
           <dt>Design</dt>
-          <dd><a target="_blank" href="https://www.figma.com/@thomasrettig">Figma</a></dd>
-          <dd><a target="_blank" href="https://unsplash.com/@thmsrttg">Unsplash</a></dd>
+          <dd><a href="https://www.figma.com/@thomasrettig">Figma</a></dd>
+          <dd><a href="https://unsplash.com/@thmsrttg">Unsplash</a></dd>
         </dl>
         <dl>
           <dt>Music</dt>
-          <dd><a target="_blank" href="https://open.spotify.com/user/exhjzjc3pr5df8fdgodag53n7">Spotify</a></dd>
+          <dd><a href="https://open.spotify.com/user/exhjzjc3pr5df8fdgodag53n7">Spotify</a></dd>
         </dl>
         <dl>
           <dt>Social</dt>
-          <dd><a target="_blank" href="https://thms.netlify.app/">Blog</a></dd>
-          <dd><a target="_blank" href="https://www.instagram.com/thomasrettig12/">Instagram</a></dd>
-          <dd><a target="_blank" href="https://twitter.com/ThomasRettig13">Twitter</a></dd>
-          <dd><a target="_blank" href="https://www.youtube.com/channel/UChpmA8k8wr_BnMiUkJihECQ">YouTube</a></dd>
+          <dd><a href="https://thms.netlify.app/">Blog</a></dd>
+          <dd><a href="https://www.instagram.com/thmsrttg/">Instagram</a></dd>
+          <dd><a href="https://twitter.com/ThomasRettig13">Twitter</a></dd>
+          <dd><a href="https://www.youtube.com/channel/UChpmA8k8wr_BnMiUkJihECQ">YouTube</a></dd>
         </dl>
       </div>
     </main>
-    <aside>
-      <img src="https://www.etceteratype.co/img/random/rotate.php" alt="Random grayscale background image"> <!-- Random background image -->
-    </aside>
     <footer>
-      <p class="social">&copy; 2022 Thomas Rettig</p>
+      <p class="social">&copy; 2023 Thomas Rettig</p>
     </footer>
-    <script>
-      const images = document.getElementsByTagName("img");
-
-      for (let image of images) {
-        image.addEventListener("load", () => {
-          image.style.transition = "opacity 0.6s";
-          image.style.opacity = "1";
-        });
-        image.style.opacity = "0";
-      }
-    </script>
   </body>
 </html>

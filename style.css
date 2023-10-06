@@ -27,7 +27,7 @@ Variables + pseudo selectors
 }
 
 :focus-visible {
-  outline: 4px solid hotpink;
+  outline: 4px solid coral;
 }
 
 /*-----Reset------
@@ -72,16 +72,29 @@ footer,
   opacity: 0.7;
 }
 
-aside {
-  position: fixed;
-  z-index: -1;
-  filter: brightness(40%);
-}
-
 h1 {
   font-size: 25px;
   font-weight: 500;
   line-height: 1.2;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  column-gap: calc(5px + 2vmin);
+}
+
+.circle {
+  aspect-ratio: 1;
+  background-color: var(--color-text);
+  border-radius: 50%;
+  width: 9vmin;
+  min-width: 46px;
+  transition: 0.1s;
+}
+
+.circle:hover {
+  transform: scale(1.1);
 }
 
 .name {
@@ -90,8 +103,8 @@ h1 {
 }
 
 .location {
-  font-size: 14px;
-  letter-spacing: 0.5px;
+  font-size: 16px;
+  letter-spacing: 0.25px;
   position: fixed;
   cursor: vertical-text;
   transform: rotate(90deg);
@@ -162,7 +175,6 @@ br, img {
 
   h1 {
     position: static;
-    margin-top: 0.5em;
   }
 
   .social {
@@ -207,7 +219,7 @@ br, img {
 
 @media screen and (min-width: 1001px) {
   .columns-4 {
-    column-gap: 12ch;
+    column-gap: 8ch;
     display: flex;
     max-width: 1200px;
   }
@@ -216,9 +228,13 @@ br, img {
 @media (prefers-color-scheme: dark) {
   :root {
     --color-scheme: dark;
-    --color-accent: coral;
+    --color-accent: oklch(0.9 0.14 145);
     --color-text: white;
     --color-background: #131313;
+  }
+
+  .circle {
+    background-color: oklch(0.8 0.14 145);
   }
 }
 
@@ -226,10 +242,6 @@ br, img {
   a:hover {
     color: #0f3612;
   }
-  
-  aside {
-    filter: brightness(150%);
-    mix-blend-mode: overlay; /* ensure green backrgound colour is inherited */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
