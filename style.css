@@ -11,16 +11,6 @@ Variables + pseudo selectors
   --color-background: #e8f5e9;
 }
 
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 ::selection {
   background-color: #131313;
   color: var(--color-background);
@@ -229,12 +219,6 @@ br, img {
 
   .circle {
     background-color: oklch(0.8 0.14 145);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  a:hover {
-    color: #0f3612;
   }
 }
 
