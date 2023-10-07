@@ -57,8 +57,8 @@
   </head>
   <body>
     <header>
-      <div id="logo" role="presentation">
-        <a href="/" target="_self"><div class="circle"></div></a>
+      <div id="logo" role="button" aria-label="Toggle dark mode" title="Toggle dark mode" tabindex="1">
+        <div class="circle"></div>
       </div>
       <h1 class="title"><span class="name">Thomas Rettig’s</span><br>Page of Links</h1>
     </header>
@@ -89,5 +89,13 @@
     <footer>
       <p class="social">&copy; 2023 Thomas Rettig</p>
     </footer>
+    <script>
+      const toggleButton = document.getElementById("logo");
+      const html = document.documentElement;
+
+      toggleButton.addEventListener('click', () => {
+          html.classList.toggle('dark-mode');
+      });
+    </script>
   </body>
 </html>

@@ -3,12 +3,21 @@ Variables + pseudo selectors
 --------------------------*/
 
 :root {
-  --font-text: "Inter", system-ui, sans-serif;
+  --font-text: "Inter var", system-ui, sans-serif;
   --font-display: "InterDisplay", "Inter Display", "Inter", system-ui, sans-serif;
   --color-scheme: light;
   --color-accent: #a5d6a7;
   --color-text: #1b5e20;
   --color-background: #e8f5e9;
+  --color-circle: #1b5e20;
+}
+
+.dark-mode {
+  --color-scheme: dark;
+  --color-accent: oklch(0.9 0.14 145);
+  --color-text: white;
+  --color-background: #131313;
+  --color-circle: oklch(0.8 0.14 145);
 }
 
 ::selection {
@@ -78,6 +87,7 @@ header {
   aspect-ratio: 1;
   background-color: var(--color-text);
   border-radius: 50%;
+  cursor: pointer;
   width: 9vmin;
   min-width: 46px;
   transition: 0.1s;
@@ -87,9 +97,17 @@ header {
   transform: scale(1.1);
 }
 
+.dark-mode .circle {
+  background-color: oklch(0.8 0.14 145);
+}
+
 .name {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 550;
+}
+
+.dark-mode .name {
+  font-weight: 450;
 }
 
 .location {
@@ -109,16 +127,24 @@ dl {
 
 dl dt {
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
   font-variant: all-small-caps;
   letter-spacing: 3px;
   margin-bottom: 3vmin;
+}
+
+.dark-mode dl dt {
+  font-weight: 500;
 }
 
 dl dd {
   font-size: min(max(32px, 2em + 0.2vw - 0.7px), 40px);
   margin-bottom: max(min(8px), 0.2vh, 12px);
   line-height: 1.2;
+}
+
+dt:first-child {
+  font-size: 20px;
 }
 
 a {
@@ -130,8 +156,7 @@ a {
   font-family: var(--font-display);
 }
 
-a:hover,
-p.social a:hover {
+a:hover {
   color: var(--color-accent);
 }
 
@@ -139,7 +164,7 @@ p.social a:hover {
   animation: fadein 1.3s;
 }
 
-br, img {
+br {
   user-select: none;
 }
 
@@ -151,14 +176,6 @@ br, img {
   header,
   footer {
     padding: 5vw;
-  }
-
-  h1 {
-    position: static;
-  }
-
-  .social {
-    position: static;
   }
 
   dt {
@@ -183,22 +200,6 @@ br, img {
   a {
     display: block;
   }
-
-  .social a {
-    display: block;
-    padding: 0px;
-    font-size: 20px;
-    line-height: 2;
-  }
-
-  dt:first-child,
-  .social strong {
-    font-size: 20px;
-  }
-
-  .location {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 1001px) {
@@ -206,19 +207,6 @@ br, img {
     column-gap: 8ch;
     display: flex;
     max-width: 1200px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-scheme: dark;
-    --color-accent: oklch(0.9 0.14 145);
-    --color-text: white;
-    --color-background: #131313;
-  }
-
-  .circle {
-    background-color: oklch(0.8 0.14 145);
   }
 }
 
