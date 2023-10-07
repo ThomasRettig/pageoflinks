@@ -92,10 +92,21 @@
     <script>
       const toggleButton = document.getElementById("logo");
       const html = document.documentElement;
+      const userPreference = localStorage.getItem("color-mode");
 
-      toggleButton.addEventListener('click', () => {
-          html.classList.toggle('dark-mode');
-      });
+      if (userPreference) {
+        html.classList.toggle("dark-mode", userPreference === "dark");
+      } else {
+        const systemPreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        html.classList.toggle("dark-mode", systemPreference);
+      }
+
+      function toggleColorMode() {
+        const isDarkMode = html.classList.toggle("dark-mode");
+        localStorage.setItem("color-mode", isDarkMode ? "dark" : "light");
+      }
+
+      toggleButton.addEventListener("click", toggleColorMode);
     </script>
   </body>
 </html>
