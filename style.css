@@ -37,6 +37,11 @@ Variables + pseudo selectors
   padding: 0;
 }
 
+button {
+  background: none;
+  border: none;
+}
+
 /*----Main styles----
 -------------------*/
 
