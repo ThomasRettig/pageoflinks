@@ -6,10 +6,10 @@ Variables + pseudo selectors
   --font-text: "Inter var", system-ui, sans-serif;
   --font-display: "InterDisplay", "Inter Display", "Inter", system-ui, sans-serif;
   --color-scheme: light;
-  --color-accent: #a5d6a7;
-  --color-text: #1b5e20;
+  --color-accent: oklch(0.33 0.12 144.3);
+  --color-text: oklch(0.43 0.12 144.3);
   --color-background: #e8f5e9;
-  --color-circle: #1b5e20;
+  --color-circle: oklch(0.43 0.12 144.3);
 }
 
 .dark-mode {
