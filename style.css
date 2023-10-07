@@ -40,6 +40,7 @@ Variables + pseudo selectors
 button {
   background: none;
   border: none;
+  touch-action: manipulation;
 }
 
 /*----Main styles----
