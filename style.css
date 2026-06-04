@@ -3,7 +3,7 @@ Variables + pseudo selectors
 --------------------------*/
 
 :root {
-  --font-text: "Inter var", system-ui, sans-serif;
+  --font-text: "Inter var", "Inter", system-ui, sans-serif;
   --font-display: "InterDisplay", "Inter Display", "Inter", system-ui, sans-serif;
   --color-scheme: light;
   --color-accent: oklch(0.44 0.18 144.8);
@@ -149,13 +149,9 @@ dl dt {
 }
 
 dl dd {
-  font-size: min(max(32px, 2em + 0.2vw - 0.7px), 40px);
+  font-size: clamp(32px, 2em + 0.2vw - 0.7px, 40px);
   margin-bottom: max(min(8px), 0.2vh, 12px);
   line-height: 1.2;
-}
-
-dt:first-child {
-  font-size: 20px;
 }
 
 a {
@@ -173,6 +169,11 @@ a:hover {
 
 .columns-4 {
   animation: fadein 1.3s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 br {
@@ -197,7 +198,6 @@ br {
   dl dd {
     min-width: 200px;
     line-height: 1;
-    font-size: 30px;
   }
 
   dl {
