@@ -25,6 +25,11 @@ Variables + pseudo selectors
   color: var(--color-background);
 }
 
+.dark-mode ::selection {
+  background-color: var(--color-accent);
+  color: #131313;
+}
+
 :focus-visible {
   outline: 4px solid coral;
 }
