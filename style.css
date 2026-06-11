@@ -10,6 +10,8 @@ Variables + pseudo selectors
   --color-text: oklch(0.33 0.14 144.1);
   --color-background: #e8f5e9;
   --color-circle: oklch(0.43 0.12 144.3);
+  --cursor-border: oklch(0.33 0.14 144.1 / 0.3);
+  --cursor-dot: oklch(0.44 0.18 144.8);
 }
 
 .dark-mode {
@@ -18,6 +20,8 @@ Variables + pseudo selectors
   --color-text: white;
   --color-background: #131313;
   --color-circle: oklch(0.8 0.14 145);
+  --cursor-border: rgba(255, 255, 255, 0.25);
+  --cursor-dot: oklch(0.9 0.14 145);
 }
 
 ::selection {
@@ -40,6 +44,8 @@ Variables + pseudo selectors
 * {
   margin: 0;
   padding: 0;
+  cursor: none !important; /* Hide default browser cursor */
+  user-select: none;
 }
 
 button {
@@ -54,6 +60,8 @@ button {
 html {
   -webkit-text-size-adjust: 100%;
   color-scheme: var(--color-scheme);
+  overflow: hidden; /* Prevent html element from overflowing entirely */
+  height: 100%;
 }
 
 body {
@@ -62,17 +70,34 @@ body {
   line-height: 1.5;
   background: var(--color-background);
   color: var(--color-text);
-  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* Balanced vertical asset distribution */
+  overflow: hidden; /* Prevents ambient glow from triggering vertical/horizontal scrollbars */
+  position: relative;
 }
 
 main, footer, header {
-  padding: 15vh 60px 0;
+  padding: 6vh 80px; /* Spacious, premium padding */
+  box-sizing: border-box;
 }
 
-footer, header {
+header {
+  padding-bottom: 0;
+  align-items: center;
+  display: flex;
+  column-gap: calc(5px + 2vmin);
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center; /* Center navigation columns vertically for intentional negative space */
+}
+
+footer {
   padding-top: 0;
 }
 
@@ -88,24 +113,13 @@ h1 {
   line-height: 1.2;
 }
 
-header {
-  align-items: center;
-  display: flex;
-  column-gap: calc(5px + 2vmin);
-}
-
 .circle {
   aspect-ratio: 1;
   background-color: var(--color-text);
   border-radius: 50%;
-  cursor: pointer;
   width: 9vmin;
   min-width: 46px;
-  transition: 0.1s;
-}
-
-.circle:hover {
-  transform: scale(1.1);
+  transition: transform 0.1s;
 }
 
 .dark-mode .circle {
@@ -125,7 +139,6 @@ header {
   font-size: 16px;
   letter-spacing: 0.25px;
   position: fixed;
-  cursor: vertical-text;
   transform: rotate(90deg);
   right: -70px;
   top: 104px;
@@ -133,7 +146,7 @@ header {
 }
 
 dl {
-  margin-bottom: calc(6vmin + 2vh);
+  margin-bottom: 0; /* Handled by column layouts */
 }
 
 dl dt {
@@ -157,37 +170,91 @@ dl dd {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-a {
   font-family: var(--font-display);
+  display: inline-block; /* Precision boundaries for magnetic calculations */
+  transition: color 0.25s ease;
 }
 
 a:hover {
   color: var(--color-accent);
 }
 
-.columns-4 {
-  animation: fadein 1.3s;
-}
-
-@keyframes fadein {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 br {
   user-select: none;
+}
+
+/* Premium Dual-Element Cursor Setup (Completely transparent text field) */
+.custom-cursor-ring {
+  width: 26px;
+  height: 26px;
+  background-color: transparent;
+  border: 1px solid var(--cursor-border);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  will-change: transform, width, height, border-color;
+}
+
+.custom-cursor-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--cursor-dot);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  will-change: transform;
+}
+
+/* Ambient Liquid Glow Element */
+.ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--color-accent) 0%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(140px);
+  opacity: 0.14;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: background 0.5s ease;
+}
+
+.dark-mode .ambient-glow {
+  opacity: 0.08; /* Subtler mood illumination for dark backgrounds */
 }
 
 /*-------Media queries------
 ----------------------------*/
 
 @media screen and (max-width: 1000px) {
+  body {
+    overflow-y: auto; /* Graceful scroll fallback on smaller viewports */
+    height: auto;
+    min-height: 100vh;
+  }
+
   main,
   header,
   footer {
-    padding: 5vw;
+    padding: 8vw 6vw;
+  }
+
+  main {
+    align-items: flex-start;
   }
 
   dt {
@@ -201,7 +268,7 @@ br {
   }
 
   dl {
-    margin-bottom: 6vmin;
+    margin-bottom: 8vmin;
   }
 
   dd {
@@ -215,18 +282,23 @@ br {
 
 @media screen and (min-width: 1001px) {
   .columns-4 {
-    column-gap: 8ch;
     display: flex;
-    max-width: 1200px;
+    justify-content: space-between; /* Elegant horizontal layout spread */
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
   * {
     transition: 0.05s !important;
-  }
-
-  *:hover {
     transform: none !important;
+  }
+  .ambient-glow, .custom-cursor-ring, .custom-cursor-dot {
+    display: none;
+  }
+  * {
+    cursor: auto !important;
   }
 }

@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base target="_blank">
-    <!--SEO-->
     <meta name="google-site-verification" content="putN8PYn0urMJcjA6xItv5GSPbZ0X_R2Remw_oom4_Q">
     <meta name="description" content="Welcome to my personal homepage! Connect with me through these platforms.">
-    <!--open graph-->
     <meta property="og:locale" content="en_GB">
     <meta property="og:site_name" content="Thomas Rettig">
     <meta property="og:title" content="Thomas Rettig">
@@ -20,7 +18,6 @@
     <meta itemprop="name" content="Thomas Rettig">
     <meta itemprop="headline" content="Thomas Rettig">
     <meta itemprop="description" content="Connect with me through these platforms.">
-    <!--twitter-->
     <meta name="twitter:title" content="Thomas Rettig’s links">
     <meta name="twitter:url" content="https://www.thmsrttg.netlify.app/">
     <meta name="twitter:description" content="Welcome to my personal homepage! This is a page of useful links related to me.">
@@ -29,14 +26,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://thmsrttg.netlify.app/twitter-image.png">
     <title>Thomas Rettig’s Links</title>
-    <!--PWA-->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" sizes="256x256" href="icon-256x256.png">
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512x512.png">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Thomas Rettig">
-    <!--styles-->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://rsms.me/" crossorigin>
     <link rel="dns-prefetch" href="https://rsms.me/">
@@ -58,8 +53,14 @@
         src: url("https://rsms.me/inter/font-files/InterDisplay-SemiBold.woff2") format("woff2");
       }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   </head>
   <body>
+    <div class="custom-cursor-ring"></div>
+    <div class="custom-cursor-dot"></div>
+    
+    <div class="ambient-glow"></div>
+
     <header>
       <button id="logo" aria-label="Toggle dark mode" title="Toggle dark mode">
         <div class="circle" aria-hidden="true"></div>
@@ -90,7 +91,7 @@
       </div>
     </main>
     <footer>
-      <p class="social">&copy; 2026 Thomas Rettig</p>
+      <p class="social">© 2026 Thomas Rettig</p>
     </footer>
     <script>
       const toggleButton = document.getElementById("logo");
@@ -107,9 +108,143 @@
       function toggleColorMode() {
         const isDarkMode = html.classList.toggle("dark-mode");
         localStorage.setItem("color-mode", isDarkMode ? "dark" : "light");
+
+        // Dynamic container haptic feedback (Shake interaction)
+        gsap.fromTo("body", 
+          { x: -4 }, 
+          { x: 4, duration: 0.04, repeat: 5, yoyo: true, clearProps: "x" }
+        );
       }
 
       toggleButton.addEventListener("click", toggleColorMode);
+
+      // --- GSAP Advanced Tracking Systems ---
+      const cursorRing = document.querySelector(".custom-cursor-ring");
+      const cursorDot = document.querySelector(".custom-cursor-dot");
+      const glow = document.querySelector(".ambient-glow");
+      const isMobile = window.matchMedia("(max-width: 1000px)").matches;
+
+      window.addEventListener("mousemove", (e) => {
+        gsap.to([cursorRing, cursorDot], { opacity: 1, duration: 0.2 }); 
+        
+        // Exact 1:1 tight pin-point center mapping for the inner point
+        gsap.to(cursorDot, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.02
+        });
+
+        // Fluid, elastic lazy trailing effect for the surrounding ring
+        gsap.to(cursorRing, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.12,
+          ease: "power2.out"
+        });
+
+        // Slow cinematic inertia trail for layout liquid backlighting
+        gsap.to(glow, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 1.6,
+          ease: "power3.out"
+        });
+      });
+
+      // --- GSAP Magnetic Bounds Interaction Engine ---
+      const interactiveElements = document.querySelectorAll("a, #logo");
+
+      interactiveElements.forEach((element) => {
+        element.addEventListener("mousemove", (e) => {
+          if (isMobile) return; 
+
+          const rect = element.getBoundingClientRect();
+          const x = e.clientX - (rect.left + rect.width / 2);
+          const y = e.clientY - (rect.top + rect.height / 2);
+
+          // Translate target cleanly towards cursor physics
+          gsap.to(element, {
+            x: x * 0.28,
+            y: y * 0.28,
+            scale: element.tagName === "A" ? 1.04 : 1, // Subtle non-destructive typography lift
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+
+        element.addEventListener("mouseenter", () => {
+          if (isMobile) return;
+          
+          // Expand tracking circle perfectly to bracket elements without obstructing readability
+          gsap.to(cursorRing, {
+            width: 50,
+            height: 50,
+            borderColor: "var(--color-accent)",
+            duration: 0.3,
+            ease: "power2.out"
+          });
+          
+          gsap.to(cursorDot, {
+            scale: 1.5,
+            duration: 0.2
+          });
+        });
+
+        element.addEventListener("mouseleave", () => {
+          // Perfectly timed mechanical return springs
+          gsap.to(element, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.4)"
+          });
+
+          gsap.to(cursorRing, {
+            width: 26,
+            height: 26,
+            borderColor: "var(--cursor-border)",
+            duration: 0.3,
+            ease: "power2.out"
+          });
+
+          gsap.to(cursorDot, {
+            scale: 1,
+            duration: 0.2
+          });
+        });
+
+        // Click / holding activation mechanics (Shrinks pointer haptically)
+        element.addEventListener("mousedown", () => {
+          gsap.to(cursorRing, {
+            width: 35,
+            height: 35,
+            duration: 0.1,
+            ease: "power2.in"
+          });
+        });
+
+        element.addEventListener("mouseup", () => {
+          gsap.to(cursorRing, {
+            width: 50,
+            height: 50,
+            duration: 0.15,
+            ease: "power2.out"
+          });
+        });
+      });
+
+      // --- GSAP Entry Micro-animations ---
+      gsap.set(["header", ".columns-4 dl", "footer"], { opacity: 0, y: 20 });
+
+      gsap.to(["header", ".columns-4 dl", "footer"], {
+        opacity: 1,
+        y: 0,
+        duration: 1.4,
+        stagger: 0.1,
+        ease: "power3.out",
+        delay: 0.15
+      });
     </script>
   </body>
 </html>
