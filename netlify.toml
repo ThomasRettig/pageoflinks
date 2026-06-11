@@ -1,0 +1,4 @@
+[build]
+  # Creates a production folder, minifies index.html and style.css into it
+  command = "mkdir -p dist && npx html-minifier --collapse-whitespace --remove-comments index.html -o dist/index.html && npx clean-css-cli style.css -o dist/style.css"
+  publish = "dist"
