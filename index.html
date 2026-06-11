@@ -124,117 +124,109 @@
       const glow = document.querySelector(".ambient-glow");
       const isMobile = window.matchMedia("(max-width: 1000px)").matches;
 
-      window.addEventListener("mousemove", (e) => {
-        gsap.to([cursorRing, cursorDot], { opacity: 1, duration: 0.2 }); 
-        
-        // Exact 1:1 tight pin-point center mapping for the inner point
-        gsap.to(cursorDot, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.02
-        });
-
-        // Fluid, elastic lazy trailing effect for the surrounding ring
-        gsap.to(cursorRing, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.12,
-          ease: "power2.out"
-        });
-
-        // Slow cinematic inertia trail for layout liquid backlighting
-        gsap.to(glow, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 1.6,
-          ease: "power3.out"
-        });
-      });
-
-      // --- GSAP Magnetic Bounds Interaction Engine ---
-      const interactiveElements = document.querySelectorAll("a, #logo");
-
-      interactiveElements.forEach((element) => {
-        element.addEventListener("mousemove", (e) => {
-          if (isMobile) return; 
-
-          const rect = element.getBoundingClientRect();
-          const x = e.clientX - (rect.left + rect.width / 2);
-          const y = e.clientY - (rect.top + rect.height / 2);
-
-          // Translate target cleanly towards cursor physics
-          gsap.to(element, {
-            x: x * 0.28,
-            y: y * 0.28,
-            scale: element.tagName === "A" ? 1.04 : 1, // Subtle non-destructive typography lift
-            duration: 0.3,
-            ease: "power2.out"
-          });
-        });
-
-        element.addEventListener("mouseenter", () => {
-          if (isMobile) return;
-          
-          // Expand tracking circle perfectly to bracket elements without obstructing readability
-          gsap.to(cursorRing, {
-            width: 50,
-            height: 50,
-            borderColor: "var(--color-accent)",
-            duration: 0.3,
-            ease: "power2.out"
-          });
+      // Only mount desktop listeners if user is not on a mobile screen
+      if (!isMobile) {
+        window.addEventListener("mousemove", (e) => {
+          gsap.to([cursorRing, cursorDot], { opacity: 1, duration: 0.2 }); 
           
           gsap.to(cursorDot, {
-            scale: 1.5,
-            duration: 0.2
-          });
-        });
-
-        element.addEventListener("mouseleave", () => {
-          // Perfectly timed mechanical return springs
-          gsap.to(element, {
-            x: 0,
-            y: 0,
-            scale: 1,
-            duration: 0.6,
-            ease: "elastic.out(1, 0.4)"
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.02
           });
 
           gsap.to(cursorRing, {
-            width: 26,
-            height: 26,
-            borderColor: "var(--cursor-border)",
-            duration: 0.3,
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.12,
             ease: "power2.out"
           });
 
-          gsap.to(cursorDot, {
-            scale: 1,
-            duration: 0.2
+          gsap.to(glow, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 1.6,
+            ease: "power3.out"
           });
         });
 
-        // Click / holding activation mechanics (Shrinks pointer haptically)
-        element.addEventListener("mousedown", () => {
-          gsap.to(cursorRing, {
-            width: 35,
-            height: 35,
-            duration: 0.1,
-            ease: "power2.in"
+        // --- GSAP Magnetic Bounds Interaction Engine ---
+        const interactiveElements = document.querySelectorAll("a, #logo");
+
+        interactiveElements.forEach((element) => {
+          element.addEventListener("mousemove", (e) => {
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - (rect.left + rect.width / 2);
+            const y = e.clientY - (rect.top + rect.height / 2);
+
+            gsap.to(element, {
+              x: x * 0.28,
+              y: y * 0.28,
+              scale: element.tagName === "A" ? 1.04 : 1, 
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+
+          element.addEventListener("mouseenter", () => {
+            gsap.to(cursorRing, {
+              width: 50,
+              height: 50,
+              borderColor: "var(--color-accent)",
+              duration: 0.3,
+              ease: "power2.out"
+            });
+            
+            gsap.to(cursorDot, {
+              scale: 1.5,
+              duration: 0.2
+            });
+          });
+
+          element.addEventListener("mouseleave", () => {
+            gsap.to(element, {
+              x: 0,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              ease: "elastic.out(1, 0.4)"
+            });
+
+            gsap.to(cursorRing, {
+              width: 26,
+              height: 26,
+              borderColor: "var(--cursor-border)",
+              duration: 0.3,
+              ease: "power2.out"
+            });
+
+            gsap.to(cursorDot, {
+              scale: 1,
+              duration: 0.2
+            });
+          });
+
+          element.addEventListener("mousedown", () => {
+            gsap.to(cursorRing, {
+              width: 35,
+              height: 35,
+              duration: 0.1,
+              ease: "power2.in"
+            });
+          });
+
+          element.addEventListener("mouseup", () => {
+            gsap.to(cursorRing, {
+              width: 50,
+              height: 50,
+              duration: 0.15,
+              ease: "power2.out"
+            });
           });
         });
+      }
 
-        element.addEventListener("mouseup", () => {
-          gsap.to(cursorRing, {
-            width: 50,
-            height: 50,
-            duration: 0.15,
-            ease: "power2.out"
-          });
-        });
-      });
-
-      // --- GSAP Entry Micro-animations ---
+      // --- GSAP Entry Micro-animations (Runs globally on both Desktop/Mobile) ---
       gsap.set(["header", ".columns-4 dl", "footer"], { opacity: 0, y: 20 });
 
       gsap.to(["header", ".columns-4 dl", "footer"], {
